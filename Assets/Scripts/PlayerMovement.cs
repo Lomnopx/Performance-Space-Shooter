@@ -24,5 +24,12 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply force to the Rigidbody2D
         rb.AddForce(force);
+
+        Vector2 moveDirection = rb.velocity.normalized;
+        if (moveDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 }

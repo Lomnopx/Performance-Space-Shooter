@@ -16,15 +16,13 @@ public class OutOFBounds : MonoBehaviour
             Vector2 newPosition = currentPosition;
 
 
-            newPosition.x = -newPosition.x*0.97f; // Teleport to the left side
-            newPosition.y = -newPosition.y * 0.95f; // Teleport to the left side
+            newPosition.x = -newPosition.x*0.97f; // Teleport X
+            newPosition.y = -newPosition.y * 0.90f; // Teleport Y
 
 
 
             // Apply the new position to the colliding object
             other.transform.position = newPosition;
-            Debug.Log(currentPosition);
-            Debug.Log(newPosition);
         }
     }
 }
