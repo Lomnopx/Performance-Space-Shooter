@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float thrustForce = 5f;
+    public float ThrustForce = 5.0f;
+    public float ShootForce = 5.0f;
 
-    private Rigidbody2D rb;
-
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    [SerializeField] private Rigidbody2D playerRigidBody;
+    [SerializeField] private ShootBullet bulletSpawner;
 
     private void Update()
     {
@@ -20,16 +17,22 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
 
         // Calculate force vector
-        Vector2 force = new Vector2(horizontalInput, verticalInput).normalized * thrustForce / 100;
+        Vector2 force = new Vector2(horizontalInput, verticalInput).normalized * ThrustForce / 100;
 
         // Apply force to the Rigidbody2D
-        rb.AddForce(force);
+        playerRigidBody.AddForce(force);
 
-        Vector2 moveDirection = rb.velocity.normalized;
+        Vector2 moveDirection = playerRigidBody.velocity.normalized;
         if (moveDirection != Vector2.zero)
         {
             float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+
+
+        if(Input.GetButtonDown("Shoot"))
+        {
+            bulletSpawner.Shoot(playerRigidBody.transform.position, playerRigidBody.transform.right, ShootForce);
         }
     }
 }

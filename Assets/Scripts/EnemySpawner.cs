@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     public List<Transform> SpawnPoints;
 
     public int enemyAmount = 10; // Maximum number of enemies to spawn
-    private int enemiesSpawned = 0; // Counter to keep track of enemies spawned
+    private static int enemiesSpawned = 0; // Counter to keep track of enemies spawned
 
     // spawn a random prefab from the list
     public void SpawnRandomPrefab()
@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void DestroyEnemy(GameObject enemy)
+    public static void DestroyEnemy(GameObject enemy)
     {
         Destroy(enemy);
         enemiesSpawned--;
