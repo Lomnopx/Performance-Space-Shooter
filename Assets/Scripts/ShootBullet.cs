@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootBullet : MonoBehaviour
 {
-    public ObjectPoolingBullets projectilePool;
+    [SerializeField] private  ObjectPoolingBullets projectilePool;
 
     public void Shoot(Vector3 location, Vector3 direction, float force)
     {

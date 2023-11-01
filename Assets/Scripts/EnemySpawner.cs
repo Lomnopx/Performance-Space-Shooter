@@ -1,49 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public List<GameObject> Enemies;
+    [SerializeField] private ObjectPoolingEnemies enemyPool;
+
+    [SerializeField] private float Minforce;
+    [SerializeField] private float Maxforce;
+
     public List<Transform> SpawnPoints;
 
-    public int enemyAmount = 10; // Maximum number of enemies to spawn
     private static int enemiesSpawned = 0; // Counter to keep track of enemies spawned
 
-    // spawn a random prefab from the list
-    public void SpawnRandomPrefab()
+    public void SpawnPrefab()
     {
-        if (Enemies.Count > 0)
+        GameObject enemy = enemyPool.GetPooledEnemy();
+        if (enemy != null)
         {
-            int randomIndex = Random.Range(0, Enemies.Count);
-            GameObject prefabToSpawn = Enemies[randomIndex];
-            Instantiate(prefabToSpawn, SpawnPoints[Random.Range(0, SpawnPoints.Count)].position, Quaternion.identity);
-            enemiesSpawned++;
+            enemy.transform.position = SpawnPoints[Random.Range(0, SpawnPoints.Count)].position;
+            enemy.SetActive(true);
+
+            Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
+            enemyRb.velocity = Vector3.zero;
+            enemyRb.AddForce(new Vector2(Random.Range(Minforce, Maxforce), Random.Range(Minforce, Maxforce)));
         }
-        else
-        {
-            Debug.LogError("No prefabs available to spawn");
-        }
+        enemiesSpawned++;
     }
 
-    // spawn a specific prefab from the list
-    public void SpawnPrefabByIndex(int index)
+    public static void DestroyEnemy(GameObject enemyForDelete)
     {
-        if (index >= 0 && index < Enemies.Count)
-        {
-            GameObject prefabToSpawn = Enemies[index];
-            Instantiate(prefabToSpawn, SpawnPoints[Random.Range(0, SpawnPoints.Count)].position, Quaternion.identity);
-            enemiesSpawned++;
-        }
-        else
-        {
-            Debug.LogError("Invalid prefab index");
-        }
-    }
-
-    public static void DestroyEnemy(GameObject enemy)
-    {
-        Destroy(enemy);
+        ObjectPoolingEnemies.ReturnToPool(enemyForDelete);
         enemiesSpawned--;
     }
 
@@ -51,9 +39,9 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         // Automatically spawn enemies until the maximum cap is reached
-        while (enemiesSpawned < enemyAmount)
+        while (enemiesSpawned < enemyPool.poolSize)
         {
-            SpawnRandomPrefab();
+            SpawnPrefab();
         }
     }
 }

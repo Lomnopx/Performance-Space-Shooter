@@ -644,7 +644,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHp: 5
-  Espawner: {fileID: 1790503136}
 --- !u!1 &678388187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,6 +1270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1790503137}
   - component: {fileID: 1790503136}
+  - component: {fileID: 1790503138}
   m_Layer: 0
   m_Name: Enemy Spawner
   m_TagString: Untagged
@@ -1290,8 +1290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14cf836ff2478954eb896f797ecdabfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enemies:
-  - {fileID: 7393529918083593077, guid: cdb2ea1a96854a2428b4e00a4ee01c20, type: 3}
+  enemyPool: {fileID: 1790503138}
+  Minforce: -140
+  Maxforce: 140
   SpawnPoints:
   - {fileID: 678388188}
   - {fileID: 850149120}
@@ -1305,7 +1306,6 @@ MonoBehaviour:
   - {fileID: 618317160}
   - {fileID: 159988378}
   - {fileID: 970200842}
-  enemyAmount: 10
 --- !u!4 &1790503137
 Transform:
   m_ObjectHideFlags: 0
@@ -1333,6 +1333,20 @@ Transform:
   - {fileID: 159988378}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1790503138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790503135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de142ab7bd26494789367cbe02127a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 7393529918083593077, guid: cdb2ea1a96854a2428b4e00a4ee01c20, type: 3}
+  poolSize: 10
 --- !u!1 &1838958085
 GameObject:
   m_ObjectHideFlags: 0
