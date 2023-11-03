@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.FilePathAttribute;
+
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,7 +11,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float Maxforce;
 
     public List<Transform> SpawnPoints;
-
     private static int enemiesSpawned = 0; // Counter to keep track of enemies spawned
 
     public void SpawnPrefab()
