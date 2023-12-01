@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class ShootBullet : MonoBehaviour
 {
-    public ObjectPoolingBullets projectilePool;
+    public GameObject projectilePrefab;
 
     public void Shoot(Vector3 location, Vector3 direction, float force)
     {
-        GameObject projectile = projectilePool.GetPooledProjectile();
+        GameObject projectile = Instantiate(projectilePrefab);
+
 
         if (projectile != null)
         {
