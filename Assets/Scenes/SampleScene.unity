@@ -1304,7 +1304,7 @@ MonoBehaviour:
   - {fileID: 618317160}
   - {fileID: 159988378}
   - {fileID: 970200842}
-  enemyAmount: 50
+  enemyAmount: 500
 --- !u!4 &1790503137
 Transform:
   m_ObjectHideFlags: 0
