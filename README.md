@@ -33,6 +33,8 @@ The outcome of this was a bit more stable fps that hovered around 700-850 averag
 I don't know of a way to accuratly measure the frequency of garbage collection to get raw supporting data outside of fps and general performance, but the size of the collection was considerable smaller now
 ![image](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/8fc7be13-df61-4681-a0fc-d84adf5cf231)
 
+-----------------------------------------------------------------------------
+
 When using the profiler the main performance users are for physics updates and camera rendering. 
 ![image](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/b0937ebd-3128-46dc-8a99-6abe88d56864)
 
@@ -40,7 +42,7 @@ I did look into improving the performance of the physics. The main things I lear
 In the test scenario 500 enemies almost constanly collide so this is understandable within this context.
 
 
-When in comes to rendering less objects, simple shaders and sprites is what you want and here that is already very simplified. What can be done here however is lowering screen resulution.
+When in comes to rendering. Less objects, simple shaders and sprites is what you want and here that is already very simplified. What can be done here however is lowering screen resulution.
 I have an example here where instead of rendering the game in 2k (2560x1440) I reduce that to normal HD (1920x1080) with a small change in performance, and no noticable performance in fps
 
 BEFORE
