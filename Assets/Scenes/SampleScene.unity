@@ -911,7 +911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 6123591447886927495, guid: 36f9c2b137d498443bab3c4840e8acb3, type: 3}
-  poolSize: 50
+  poolSize: 100
 --- !u!114 &1150580511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,7 +1403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7393529918083593077, guid: cdb2ea1a96854a2428b4e00a4ee01c20, type: 3}
-  poolSize: 10
+  poolSize: 500
 --- !u!1 &1838958085
 GameObject:
   m_ObjectHideFlags: 0
