@@ -39,7 +39,7 @@ When using the profiler the main performance users are for physics updates and c
 ![image](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/b0937ebd-3128-46dc-8a99-6abe88d56864)
 
 I did look into improving the performance of the physics. The main things I learned was making sure to use simple colliders and reducing how often collition occurs.
-In the test scenario 500 enemies almost constanly collide so this is understandable within this context.
+In the test scenario 500 enemies almost constanly collide so this is understandable within this context. As all object utilize simple colliders I decided to instead focus on rendering
 
 
 When in comes to rendering. Less objects, simple shaders and sprites is what you want and here that is already very simplified. What can be done here however is lowering screen resulution.
