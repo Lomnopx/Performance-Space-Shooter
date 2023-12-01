@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public class ShootBullet : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class ShootBullet : MonoBehaviour
 
     public void Shoot(Vector3 location, Vector3 direction, float force)
     {
+        Profiler.BeginSample("Object Instantiation");
         GameObject projectile = Instantiate(projectilePrefab);
 
 
@@ -20,5 +22,6 @@ public class ShootBullet : MonoBehaviour
             projectileRb.velocity = Vector3.zero;
             projectileRb.AddForce(direction * force, ForceMode2D.Impulse);
         }
+        Profiler.EndSample();
     }
 }
