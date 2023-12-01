@@ -46,7 +46,8 @@ When in comes to rendering. Less objects, simple shaders and sprites is what you
 I have an example here where instead of rendering the game in 2k (2560x1440) I reduce that to normal HD (1920x1080) with a small change in performance, and no noticable performance in fps
 
 BEFORE
-![de5652776c704acdadfabd489d8b0924](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/773598f9-bb25-4db2-aadd-5661a42405b4)
+![c1a1deffda2b0abfd48b5933c49fe6c1](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/6316d43a-dad8-4660-85f5-ba731c18d1a7)
+
 AFTER
 ![a68b5fca29f17fdea0550b3fb056fb29](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/eaa9169d-64d3-44d4-85f4-7dba4255170d)
 
