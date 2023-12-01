@@ -30,15 +30,19 @@ I don't know of a way to accuratly measure the frequency of garbage collection t
 ![image](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/8fc7be13-df61-4681-a0fc-d84adf5cf231)
 
 When using the profiler the main performance users are for physics updates and camera rendering. 
-
-I did look into improving the performance of the physics. The main things I found was making sure to use simple colliders and reducing how often collition occurs.
+![de5652776c704acdadfabd489d8b0924](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/773598f9-bb25-4db2-aadd-5661a42405b4)
+I did look into improving the performance of the physics. The main things I learned was making sure to use simple colliders and reducing how often collition occurs.
 In the test scenario 500 enemies almost constanly collide so this is understandable within this context.
 
 
 When in comes to rendering less objects, simple shaders and sprites is what you want and here that is already very simplified. What can be done here however is lowering screen resulution.
-I have an example here where instead of rendering the game in 2k (2560x1440) I reduce that to half of normal HD (960x480) resulting in a 62.5 % reduction in pixels with a notable change in performance
+I have an example here where instead of rendering the game in 2k (2560x1440) I reduce that to normal HD (1920x1080) with a small change in performance
 
 BEFORE
 ![de5652776c704acdadfabd489d8b0924](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/773598f9-bb25-4db2-aadd-5661a42405b4)
 AFTER
-![3514ec52fc4be9ca8f599ef3de18ddae](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/848d947f-17a3-45f4-b545-4c2aa5c120aa)
+![a68b5fca29f17fdea0550b3fb056fb29](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/eaa9169d-64d3-44d4-85f4-7dba4255170d)
+
+I also tried utilizing lower resulution but it seems like rendering the textures in lower resulution has a higher performance impact
+TEST WITH (960x480)
+![image](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/9dfeed15-6552-44ef-b9d9-cd4d63b24a2e)
