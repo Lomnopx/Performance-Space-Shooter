@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Profiling;
 
 public class BulletCollide : MonoBehaviour
 {
@@ -15,9 +16,15 @@ public class BulletCollide : MonoBehaviour
         {
             if(collision.CompareTag("Enemy"))
             {
+                Profiler.BeginSample("Destroy enemy and bullet");
                 EnemySpawner.DestroyEnemy(collision.gameObject);
             }
             Destroy(gameObject);
+            if (collision.CompareTag("Enemy"))
+            {
+                Profiler.EndSample();
+            }
+                
         }
     }
 }
