@@ -17,7 +17,7 @@ public class BulletCollide : MonoBehaviour
             {
                 EnemySpawner.DestroyEnemy(collision.gameObject);
             }
-            ObjectPoolingBullets.ReturnToPool(gameObject);
+            Destroy(gameObject);
         }
     }
 }

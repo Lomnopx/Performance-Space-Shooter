@@ -644,7 +644,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerHp: 5
-  Espawner: {fileID: 1790503136}
 --- !u!1 &678388187
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93f038d063edbe418211184def126c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePool: {fileID: 1150580510}
+  projectilePrefab: {fileID: 6123591447886927495, guid: 36f9c2b137d498443bab3c4840e8acb3, type: 3}
 --- !u!4 &1150580512
 Transform:
   m_ObjectHideFlags: 0
@@ -1305,7 +1304,7 @@ MonoBehaviour:
   - {fileID: 618317160}
   - {fileID: 159988378}
   - {fileID: 970200842}
-  enemyAmount: 10
+  enemyAmount: 50
 --- !u!4 &1790503137
 Transform:
   m_ObjectHideFlags: 0
