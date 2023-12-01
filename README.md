@@ -40,7 +40,7 @@ In the test scenario 500 enemies almost constanly collide so this is understanda
 
 
 When in comes to rendering less objects, simple shaders and sprites is what you want and here that is already very simplified. What can be done here however is lowering screen resulution.
-I have an example here where instead of rendering the game in 2k (2560x1440) I reduce that to normal HD (1920x1080) with a small change in performance
+I have an example here where instead of rendering the game in 2k (2560x1440) I reduce that to normal HD (1920x1080) with a small change in performance, and no noticable performance in fps
 
 BEFORE
 ![de5652776c704acdadfabd489d8b0924](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/773598f9-bb25-4db2-aadd-5661a42405b4)
