@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     public float ThrustForce = 5.0f;
     public float ShootForce = 5.0f;
 
+    private float shootcooldown = 0.05f;
+    private float shootcooldowntime = 0.0f;
+
     [SerializeField] private Rigidbody2D playerRigidBody;
     [SerializeField] private ShootBullet bulletSpawner;
 
@@ -30,9 +33,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if(Input.GetButtonDown("Shoot"))
+        if(shootcooldowntime>= shootcooldown)
         {
             bulletSpawner.Shoot(playerRigidBody.transform.position, playerRigidBody.transform.right, ShootForce);
+            shootcooldowntime = 0;
         }
+        shootcooldowntime += Time.deltaTime;
     }
 }
