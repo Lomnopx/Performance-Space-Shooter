@@ -1,47 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Unity.Entities;
+using Unity.Burst;
+using Unity.Mathematics;
 
-
-public class EnemySpawner : MonoBehaviour
+namespace ECS
 {
-    [SerializeField] private ObjectPoolingEnemies enemyPool;
-
-    [SerializeField] private float Minforce;
-    [SerializeField] private float Maxforce;
-
-    public List<Transform> SpawnPoints;
-    private static int enemiesSpawned = 0; // Counter to keep track of enemies spawned
-
-    public void SpawnPrefab()
+    //[BurstCompile]
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
+    public partial struct EnemySpawner : ISystem
     {
-        GameObject enemy = enemyPool.GetPooledEnemy();
-        if (enemy != null)
+        [BurstCompile]
+        public void OnCreate(ref SystemState state)
         {
-            enemy.transform.position = SpawnPoints[Random.Range(0, SpawnPoints.Count)].position;
-            enemy.SetActive(true);
-
-            Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
-            enemyRb.velocity = Vector3.zero;
-            enemyRb.AddForce(new Vector2(Random.Range(Minforce, Maxforce), Random.Range(Minforce, Maxforce)));
+            state.RequireForUpdate<EnemySpawnerData>();
         }
-        enemiesSpawned++;
-    }
 
-    public static void DestroyEnemy(GameObject enemyForDelete)
-    {
-        ObjectPoolingEnemies.ReturnToPool(enemyForDelete);
-        enemiesSpawned--;
-    }
-
-
-    void Update()
-    {
-        // Automatically spawn enemies until the maximum cap is reached
-        while (enemiesSpawned < enemyPool.poolSize)
+        //[BurstCompile]
+        public void OnUpdate(ref SystemState state)
         {
-            SpawnPrefab();
+            var deltaTime = SystemAPI.Time.DeltaTime;
+
+            if (!SystemAPI.TryGetSingletonEntity<EnemySpawnerData>(out Entity spawnerEntity))
+            {
+                return;
+            }
+
+            RefRW<EnemySpawnerData> spawner = SystemAPI.GetComponentRW<EnemySpawnerData>(spawnerEntity);
+
+            // Update the spawn timer
+            spawner.ValueRW.spawnTimer += deltaTime;
+
+            // Only spawn a new entity if the spawn timer is greater than or equal to the spawn rate
+            if (spawner.ValueRO.currentSpawns < spawner.ValueRO.maxSpawns && spawner.ValueRO.spawnTimer >= spawner.ValueRO.spawnRate)
+            {
+                var ECB = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
+
+                var enemyEntity = SystemAPI.GetSingletonEntity<EnemySpawnerData>();
+                var enemyAspect = SystemAPI.GetAspect<EnemySpawnAspect>(enemyEntity);
+
+
+                for (var i = 0; i < enemyAspect.NumberEnemiesToSpawn; i++)
+                {
+                    var newEnemy = ECB.Instantiate(enemyAspect.Prefab);
+                    var newEnemyTransform = enemyAspect.GetRandomSpawnTransform();
+                    ECB.SetComponent(newEnemy, newEnemyTransform);
+                    spawner.ValueRW.currentSpawns++;
+                }
+                // Reset the spawn timer and increment the current spawns
+                spawner.ValueRW.spawnTimer = 0f;
+                spawner.ValueRW.currentSpawns++;
+            }
         }
     }
+
 }
+
+
 

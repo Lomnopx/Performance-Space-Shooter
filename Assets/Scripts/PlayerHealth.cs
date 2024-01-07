@@ -11,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
         if(collision.gameObject.tag == "Enemy")
         {
             PlayerHp--;
-            EnemySpawner.DestroyEnemy(collision.gameObject);
+            //  EnemySpawner.DestroyEnemy(collision.gameObject);
         }
     }
 }
