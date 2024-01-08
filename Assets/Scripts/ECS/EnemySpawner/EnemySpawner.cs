@@ -1,6 +1,10 @@
 using Unity.Entities;
 using Unity.Burst;
 using Unity.Mathematics;
+using UnityEngine;
+using Unity.Physics;
+using Unity.Physics.Authoring;
+using Unity.Physics.Systems;
 
 namespace ECS
 {
@@ -43,6 +47,11 @@ namespace ECS
                     var newEnemy = ECB.Instantiate(enemyAspect.Prefab);
                     var newEnemyTransform = enemyAspect.GetRandomSpawnTransform();
                     ECB.SetComponent(newEnemy, newEnemyTransform);
+                    ECB.AddComponent<CollisionComponent>(newEnemy);
+                    ECB.AddComponent<DestroyComponent>(newEnemy);
+
+        
+
                     spawner.ValueRW.currentSpawns++;
                 }
                 // Reset the spawn timer and increment the current spawns
