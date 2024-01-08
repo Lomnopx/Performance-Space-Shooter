@@ -1,6 +1,5 @@
 using Unity.Entities;
 using Unity.Burst;
-using Unity.Mathematics;
 using Unity.Transforms;
 
 namespace ECS

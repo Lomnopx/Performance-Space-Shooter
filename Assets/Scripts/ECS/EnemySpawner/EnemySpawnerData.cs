@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
 using Unity.Entities;
 using Unity.Mathematics;
 

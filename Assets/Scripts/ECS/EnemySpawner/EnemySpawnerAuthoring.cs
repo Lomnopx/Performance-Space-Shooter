@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Entities;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
