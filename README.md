@@ -54,3 +54,14 @@ AFTER (AVG 30  +-5)
 I also tried utilizing lower resulution but it seems like rendering the textures in lower resulution has a higher performance impact
 TEST WITH (960x480)
 ![image](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/9dfeed15-6552-44ef-b9d9-cd4d63b24a2e)
+
+--------------------------------------------------------------------------------
+
+ECS IMPLEMENTATION.
+
+I have now implemented Dots to the project. This required me to remake almost everything witch means that the games systems is diffrent. The game plays out pretty much the same tho and have pretty much the same functionality
+Dots in combination with burstcompile allowed me to increase the amount of bullets and enemies toward ridiculous amounts and still have stable framerate. 
+
+In the testscenario I fire a bullet every frame and spawn 100 enemies every second. With this I am still able to stay within 100 fps drifting down towards 50 when the entire screen if full of enemies. 
+It's obvius that the performance differance here is massive. However it's not easy to directly compare to the previous result due to the diffrence in tests. When doing a simular test as before I got lower fps (20 bullet's per sec 500 enemies flat). 
+But it seems like the standard fps is around 400-500 no matter if I have a lot going on or nothing. This is lower than before but when it comes to spawning in massive amounts the results are incredible.
