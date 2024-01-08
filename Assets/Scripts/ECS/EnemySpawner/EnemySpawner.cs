@@ -49,7 +49,7 @@ namespace ECS
                 ECB.SetComponent(newEnemy, newEnemyTransform);
                 ECB.AddComponent<CollisionComponent>(newEnemy);
                 ECB.AddComponent<DestroyComponent>(newEnemy);
-                ECB.AddComponent(newEnemy, new Lifetime { Value = 30f });
+                ECB.AddComponent(newEnemy, new Lifetime { Value = 25f });
             }
             // Reset the spawn timer
             spawner.ValueRW.spawnTimer = 0f;
