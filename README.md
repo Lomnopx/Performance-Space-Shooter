@@ -65,3 +65,6 @@ Dots in combination with burstcompile allowed me to increase the amount of bulle
 In the testscenario I fire a bullet every frame and spawn 100 enemies every second. With this I am still able to stay within 100 fps drifting down towards 50 when the entire screen if full of enemies. 
 It's obvius that the performance differance here is massive. However it's not easy to directly compare to the previous result due to the diffrence in tests. When doing a simular test as before I got lower fps (20 bullet's per sec 500 enemies flat). 
 But it seems like the standard fps is around 400-500 no matter if I have a lot going on or nothing. This is lower than before but when it comes to spawning in massive amounts the results are incredible.
+
+Performance while screen full of enemies and firing bullet every frame
+![a15caf4e834a496a1739549d0501f529](https://github.com/Lomnopx/Performance-Space-Shooter/assets/122265254/72e91f59-7591-41a5-bad9-7cfe5d8ce48a)
