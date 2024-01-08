@@ -26,7 +26,7 @@ class EnemyspawnerBaker : Baker<EnemySpawnerAuthoring>
         {
             prefab = GetEntity(authoring.prefab, TransformUsageFlags.Dynamic),
             spawnPos = authoring.transform.position,
-            maxSpawns = 100,
+            maxSpawns = 1000,
             currentSpawns = 0,
             spawnRate = 1,
             spawnTimer = 0,

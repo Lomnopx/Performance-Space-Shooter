@@ -1,8 +1,8 @@
 using Unity.Entities;
 using Unity.Burst;
 using Unity.Physics;
-using Unity.Physics.Systems;
 using Unity.Collections;
+
 
 namespace ECS
 {
@@ -40,8 +40,6 @@ namespace ECS
         [BurstCompile]
         public void Execute(Unity.Physics.CollisionEvent collisionEvent)
         {
-            if (!CollisionLookup.HasComponent(collisionEvent.EntityA) || !CollisionLookup.HasComponent(collisionEvent.EntityB)) return;
-
             if (DestroyLookup.HasComponent(collisionEvent.EntityA))
             {
                 ECB.DestroyEntity(collisionEvent.EntityA);

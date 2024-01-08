@@ -26,7 +26,7 @@ public readonly partial struct EnemySpawnAspect : IAspect
     private float3 GetRandomPos()
     {
         float3 randomPosition;
-        randomPosition = new float3(spawnRandom.ValueRW.Value.NextFloat(-9, 9), spawnRandom.ValueRW.Value.NextFloat(-5, 5), 0);
+        randomPosition = new float3(spawnRandom.ValueRW.Value.NextFloat(-9, 9), spawnRandom.ValueRW.Value.NextFloat(5, 10), 0);
         return randomPosition;
     }
 

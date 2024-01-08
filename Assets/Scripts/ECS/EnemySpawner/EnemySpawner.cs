@@ -1,10 +1,5 @@
 using Unity.Entities;
 using Unity.Burst;
-using Unity.Mathematics;
-using UnityEngine;
-using Unity.Physics;
-using Unity.Physics.Authoring;
-using Unity.Physics.Systems;
 
 namespace ECS
 {
@@ -33,34 +28,33 @@ namespace ECS
             // Update the spawn timer
             spawner.ValueRW.spawnTimer += deltaTime;
 
-            // Only spawn a new entity if the spawn timer is greater than or equal to the spawn rate
-            if (spawner.ValueRO.currentSpawns < spawner.ValueRO.maxSpawns && spawner.ValueRO.spawnTimer >= spawner.ValueRO.spawnRate)
+            // Spawn a new entity if the spawn timer is greater than or equal to the spawn rate
+            if (spawner.ValueRO.spawnTimer >= spawner.ValueRO.spawnRate)
             {
-                var ECB = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
-
-                var enemyEntity = SystemAPI.GetSingletonEntity<EnemySpawnerData>();
-                var enemyAspect = SystemAPI.GetAspect<EnemySpawnAspect>(enemyEntity);
-
-
-                for (var i = 0; i < enemyAspect.NumberEnemiesToSpawn; i++)
-                {
-                    var newEnemy = ECB.Instantiate(enemyAspect.Prefab);
-                    var newEnemyTransform = enemyAspect.GetRandomSpawnTransform();
-                    ECB.SetComponent(newEnemy, newEnemyTransform);
-                    ECB.AddComponent<CollisionComponent>(newEnemy);
-                    ECB.AddComponent<DestroyComponent>(newEnemy);
-
-        
-
-                    spawner.ValueRW.currentSpawns++;
-                }
-                // Reset the spawn timer and increment the current spawns
-                spawner.ValueRW.spawnTimer = 0f;
-                spawner.ValueRW.currentSpawns++;
+                SpawnEnemy(ref spawner, ref state);
             }
         }
-    }
 
+        public void SpawnEnemy(ref RefRW<EnemySpawnerData> spawner, ref SystemState state)
+        {
+            var ECB = SystemAPI.GetSingleton<BeginInitializationEntityCommandBufferSystem.Singleton>().CreateCommandBuffer(state.WorldUnmanaged);
+
+            var enemyEntity = SystemAPI.GetSingletonEntity<EnemySpawnerData>();
+            var enemyAspect = SystemAPI.GetAspect<EnemySpawnAspect>(enemyEntity);
+
+            for (var i = 0; i < enemyAspect.NumberEnemiesToSpawn; i++)
+            {
+                var newEnemy = ECB.Instantiate(enemyAspect.Prefab);
+                var newEnemyTransform = enemyAspect.GetRandomSpawnTransform();
+                ECB.SetComponent(newEnemy, newEnemyTransform);
+                ECB.AddComponent<CollisionComponent>(newEnemy);
+                ECB.AddComponent<DestroyComponent>(newEnemy);
+                ECB.AddComponent(newEnemy, new Lifetime { Value = 30f });
+            }
+            // Reset the spawn timer
+            spawner.ValueRW.spawnTimer = 0f;
+        }
+    }
 }
 
 
